@@ -45,12 +45,12 @@ const AddProduct = ({ category, subcategory, change }) => {
                     },
                 }
             );
-            console.log('Category added successfully:', response.data);
+            console.log('product added successfully:', response.data);
  
             console.log
             change()
         } catch (error) {
-            console.error('Error adding category:', error);
+            console.error('Error adding products', error);
         }
     };
 
@@ -118,7 +118,7 @@ const AddProduct = ({ category, subcategory, change }) => {
                         </div>
 
                         <div className="flex flex-col w-[317px]">
-                            <label htmlFor="" className="w-[100px] text-center bg-white relative top-3 left-4">
+                            <label htmlFor="" className="w-[120px] text-center bg-white relative top-3 left-4">
                                 Product name
                             </label>
                             <input

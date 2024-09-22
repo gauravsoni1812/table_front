@@ -46,6 +46,7 @@ const AddCategory = ({ change }) => {
             setCategory_name('');
             setSequence('');
             setFile(null);
+            change()
 
         } catch (error) {
             console.error('Error adding category:', error);
@@ -76,7 +77,7 @@ const AddCategory = ({ change }) => {
 
                     <div className='flex gap-10'>
                         <div className='flex flex-col w-[317px]'>
-                            <label className='w-[120px] text-center bg-white relative top-3 left-4'>
+                            <label className='w-[150px] text-center bg-white relative top-3 left-4'>
                                 Category name
                             </label>
                             <input
@@ -88,7 +89,7 @@ const AddCategory = ({ change }) => {
                         </div>
 
                         <div className='flex flex-col w-[317px]'>
-                            <label className='w-[150px] text-center bg-white relative top-3 left-4'>
+                            <label className='w-[170px] text-center bg-white relative top-3 left-4'>
                                 Category sequence
                             </label>
                             <input

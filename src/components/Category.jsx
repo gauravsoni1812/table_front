@@ -7,6 +7,8 @@ import ShowCategory from './category/showCategory'
 import AddCategory from './category/AddCategory'
 import EditCategory from './category/editCategory'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 
 
 
@@ -18,6 +20,35 @@ const Category = () => {
     const [editcategory, setEditCategory] = useState(false)
     const [editIddata, setEditIddata] = useState(null)
     
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        const userIdentify = () => {
+            const token = localStorage.getItem("authToken");
+            console.log(token)
+            if (token) {
+                try {
+                    // Decode the token to get the user details
+                    const decodedToken = jwtDecode(token);
+                    const userId = decodedToken.id; // Adjust the key based on your token's payload
+                     
+                    console.log(decodedToken)
+                    if (!userId) {
+                        navigate("/sign-in");
+                    }
+                } catch (error) {
+                    console.log("Invalid token:", error);
+                    navigate("/sign-in"); // If token is invalid, redirect to sign-in
+                }
+            } else {
+                console.log("herer")
+                navigate("/sign-in"); // No token found, redirect to sign-in
+            }
+        };
+
+        userIdentify(); // Call the function to check user identity
+    }, [navigate]);
+
     const feditId = (data)=>{
          setEditIddata(data)
     }

@@ -6,6 +6,8 @@ import ShowProduct from './products/ShowProduct'
 import AddProduct from './products/AddProduct'
 import EditProduct from './products/EditProduct'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 
 
 
@@ -17,7 +19,7 @@ const Products = () => {
     const [addproduct, setAddproduct] = useState(false)
     const [editproduct, setEditproduct] = useState(false)
     const [editIddata, setEditIddata] = useState(null)
-    
+    const navigate = useNavigate()
     const feditId = (data)=>{
          setEditIddata(data)
     }
@@ -28,7 +30,16 @@ const Products = () => {
             // Retrieve token from local storage
             console.log("gaurav soni")
             const token = localStorage.getItem("authToken");
+            if(token == null){
+                navigate("/sign-in")
+            }
             console.log(token)
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken?.id; // Adjust the key based on your token's payload
+  
+            if (!userId) {
+              navigate("/sign-in");
+            }
             try {
                 const response = await axios.get("https://table-t0az.onrender.com/product", {
                     headers: {

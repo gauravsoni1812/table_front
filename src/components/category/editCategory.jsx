@@ -61,7 +61,7 @@ const EditCategory = ({ data, change }) => {
                     <div className='flex flex-col w-[317px]'>
                         <label
                             htmlFor=''
-                            className='w-[69px] text-center bg-white relative top-3 left-4'
+                            className='w-[150px] text-center bg-white relative top-3 left-4'
                         >
                             Category Name
                         </label>
@@ -75,7 +75,7 @@ const EditCategory = ({ data, change }) => {
                     </div>
 
                     <div className='flex flex-col w-[317px]'>
-                        <label className='w-[150px] text-center bg-white relative top-3 left-4'>
+                        <label className='w-[180px] text-center bg-white relative top-3 left-4'>
                             Category sequence
                         </label>
                         <input
@@ -89,7 +89,7 @@ const EditCategory = ({ data, change }) => {
                     <div className='flex flex-col w-[317px]'>
                         <label
                             htmlFor=''
-                            className='w-[150px] text-center bg-white relative top-3 left-4'
+                            className='w-[90px] text-center bg-white relative top-3 left-4'
                         >
                             Status
                         </label>

@@ -1,22 +1,45 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import img from "../../images/image.svg"
 const Uploader = ({ handleFile , handlefileSubcategory , handlefileProduct }) => {
-    const handleClick = (e) => {
 
+    const [selectedFile, setSelectedFile] = useState()
+    const [preview, setPreview] = useState()
+
+    // create a preview as a side effect, whenever selected file is changed
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreview(objectUrl)
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+
+
+
+
+    const handleClick = (e) => {
         if(handleFile){
             handleFile(e.target.files[0])
+            setSelectedFile(e.target.files[0])
         }
 
         if(handlefileSubcategory){
             handlefileSubcategory(e.target.files[0])
+            setSelectedFile(e.target.files[0])
         }
         
         if(handlefileProduct){
             handlefileProduct(e.target.files[0])
+            setSelectedFile(e.target.files[0])
         }
-
     }
     return (
         <div className='flex gap-9 justify-start items-center'>
@@ -33,8 +56,9 @@ const Uploader = ({ handleFile , handlefileSubcategory , handlefileProduct }) =>
             </div>
             <div>
                 <div className='flex flex-col w-[200px]'>
-                    <p className='w-[90px] text-center bg-white relative top-3 left-4'>Upload img</p>
-                    <div className='border-[1px] border-[#868686] p-2 h-[123px] w-[143px] rounded-lg'>
+                    <p className='w-[120px] text-center bg-white relative top-3 left-4'>Upload img</p>
+                    <div className='border-[1px] border-[#868686] flex justify-center items-center p-2 h-[123px] w-[143px] rounded-lg'>
+                        <img src={preview} alt="" className='h-16' />
                     </div>
                 </div>
             </div>

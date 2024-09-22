@@ -43,13 +43,7 @@ const AddSubCategory = ({ data, change }) => {
                 }
             );
             console.log('Category added successfully:', response.data);
-
-            // Clear the form after successful submission
-            // setCategory_name('');
-            // subcategory('')
-            // setSequence('');
-            // setFile(null);
-            navigate('/subcategory')
+            change()
         } catch (error) {
             console.error('Error adding category:', error);
         }

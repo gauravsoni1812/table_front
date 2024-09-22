@@ -6,6 +6,8 @@ import ShowSubCategory from './subcategory/ShowSubCategory'
 import AddSubCategory from './subcategory/AddSubCategory'
 import EditSubCategory from './subcategory/EditSubCategory'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 
 const Subcategory = () => {
     const [category, setCategory] = useState(true)
@@ -18,12 +20,20 @@ const Subcategory = () => {
          setEditIddata(data)
     }
 
-
+    const navigate = useNavigate()
+ 
     useEffect(() => {
-        const getAllCategories = async () => {
-        
+        const getAllCategories = async () => {       
             const token = localStorage.getItem("authToken");
-            console.log(token)
+            if(token==null){
+                navigate("/sign-in")
+            }
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken.id; // Adjust the key based on your token's payload
+           
+            if(!userId){
+              navigate("/sign-in")
+            }
             try { 
                 const response = await axios.get("https://table-t0az.onrender.com/category", {
                     headers: {

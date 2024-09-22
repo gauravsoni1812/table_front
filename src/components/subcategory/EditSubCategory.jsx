@@ -45,6 +45,7 @@ const EditSubCategory = ({ cdata, data, change }) => {
                 }
             );
             console.log('Subcategory edited successfully:', response.data);
+    
             change();
         } catch (error) {
             console.error('Error editing subcategory:', error);
@@ -96,7 +97,7 @@ const EditSubCategory = ({ cdata, data, change }) => {
                     <div className='flex flex-col w-[317px]'>
                         <label
                             htmlFor='subcategory'
-                            className='w-[150px] text-center bg-white relative top-3 left-4'
+                            className='w-[170px] text-center bg-white relative top-3 left-4'
                         >
                             Subcategory name
                         </label>

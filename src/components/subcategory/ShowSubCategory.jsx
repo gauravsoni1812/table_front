@@ -146,7 +146,7 @@ const ShowSubCategory = ({ feditId, change, changeEdit }) => {
                                                     {person.Category.Category_name}
                                                 </td>
                                                 <td className="px-6 py-3 whitespace-nowrap text-center flex justify-center">
-                                                    <img src={`https://table-t0az.onrender.com/${person.Image}`} alt="" />
+                                                    <img className='h-12' src={`https://table-t0az.onrender.com/${person.Image}`} alt="" />
                                                 </td>
                                                 <td className="px-6 py-3 whitespace-nowrap text-sm   text-center">
                                                     {person.Status?"Active":"Inactive"}

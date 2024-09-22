@@ -8,14 +8,14 @@ const SignIn = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState(null)
     const [password, setpassword] = useState(null)
-    const onSubmit = async () => {
-        console.log("asdasd")
+    const onSubmit = async () => {        
         try {
+            console.log("lulu")
             const data = await axios.post("https://table-t0az.onrender.com/signin", { email, password })
             const token = data.data.token
+            console.log("Token saved to localStorage");
             localStorage.setItem("authToken", token);
             navigate("/dashboard")
-            console.log("Token saved to localStorage");
         } catch (error) {
             console.log(error)
         }
